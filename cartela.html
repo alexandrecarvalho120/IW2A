@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<title>Controle de Números Sorteados</title>
+<link href="cartela.css" rel="stylesheet"/>
+</head>
+<body>
+
+<table id="TabelaNumeros">
+  <tbody>
+  </tbody>
+</table>
+
+<br />
+
+<button id="BotaoSortear" onclick="SortearNumero()">
+  Sortear Número
+</button>
+
+<h2 id="NumeroSorteado"></h2>
+
+<script>
+  var NumerosSorteados = [];
+  for(var i = 1; i <= 75; i++){
+    NumerosSorteados.push(i);
+  }
+
+  function NumeroAleatorio(NumeroMinimo, NumeroMaximo){
+    var retorno = Math.floor(Math.random() * NumeroMaximo);
+    if (retorno > 0 && retorno >= NumeroMinimo && retorno <= NumeroMaximo){
+      return retorno;
+    }else{
+      return NumeroAleatorio(NumeroMinimo, NumeroMaximo);
+    }
+  }
+
+  function MisturarArray(array){
+    var aleatorio;
+    var cont = array.length;
+    var auxiliar;
+    while (cont != 0){
+      aleatorio = NumeroAleatorio(1, array.length) - 1;
+      cont--;
+      auxiliar = array[cont];
+      array[cont] = array[aleatorio];
+      array[aleatorio] = auxiliar;
+    }
+    return array;
+  }
+
+  NumerosSorteados = MisturarArray(NumerosSorteados);
+
+  var tabelaBody = document.getElementById("TabelaNumeros").getElementsByTagName("tbody")[0];
+  for(var linha = 0; linha < 5; linha++){
+    var tr = document.createElement("tr");
+    for(var col = 1; col <= 15; col++){
+      var num = linha * 15 + col;
+      var td = document.createElement("td");
+      td.id = "num" + num;
+      td.innerText = num;
+      tr.appendChild(td);
+    }
+    tabelaBody.appendChild(tr);
+  }
+
+  var indiceSorteio = 0;
+
+  function SortearNumero(){
+    if(indiceSorteio >= NumerosSorteados.length){
+      alert("Todos os números já foram sorteados!");
+      return;
+    }
+    var numero = NumerosSorteados[indiceSorteio];
+    indiceSorteio++;
+
+    var exibicao = document.getElementById("numeroSorteado");
+    exibicao.innerText = "Número sorteado: " + numero;
+
+    var td = document.getElementById("num" + numero);
+    if(td){
+    }
+  }
+</script>
+
+</body>
+</html>

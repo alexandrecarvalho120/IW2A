@@ -1,0 +1,27 @@
+body, html {
+    background-color: #3b3b3b;
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+table {
+    background-color: rgb(255, 255, 255);
+    border: 5px double #000;
+    border-radius: 0%;
+    font-size: 30px;
+    padding: 5px 5px;
+    border-collapse: collapse;
+}
+td {
+    border: 1px solid;
+    border-radius: 5%;
+    text-align: center;
+    padding: 6px 8px;
+    width: 40px;
+    height: 40px;
+    cursor: default;
+}
